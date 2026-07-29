@@ -1,48 +1,26 @@
 # People Pulse
 
-Initial full-stack starter for the Aimprosoft HR survey platform.
+Internal HR survey platform built with Next.js, Prisma and PostgreSQL.
 
-## Included in v0.1
+## Current functionality
 
-- Next.js App Router + TypeScript
-- branded application shell
-- dashboard
-- surveys list
-- health API: `/api/health`
-- responsive layout
-- mock data only (database comes next)
+- Dashboard prototype
+- PostgreSQL connection through Supabase
+- Prisma schema and production migration
+- Survey list loaded from the database
+- Real survey creation form
 
-## Run locally
+## Deployment
 
-Requires an Active LTS Node.js version.
+Vercel requires these environment variables:
+
+- `DATABASE_URL` — Supabase transaction pooler, port 6543
+- `DIRECT_URL` — Supabase session pooler, port 5432
+
+The build command runs:
 
 ```bash
-npm install
-npm run dev
+prisma generate && prisma migrate deploy && next build
 ```
 
-Open `http://localhost:3000`.
-
-## Deploy without Docker
-
-Recommended first deployment: import the GitHub repository into Vercel and deploy with default Next.js settings.
-
-## Upload to GitHub through the browser
-
-1. Download and extract the ZIP.
-2. Open the private `people-pulse` repository.
-3. Select **Add file → Upload files**.
-4. Upload the extracted files and folders, not the ZIP itself.
-5. Commit directly to `main` for this initial setup.
-
-## Next iteration
-
-- choose hosted PostgreSQL
-- Prisma data model and migrations
-- CRUD for surveys and questions
-- anonymous participant/response separation
-- Zoho People integration stub
-
-## Brand asset note
-
-`components/logo.tsx` contains a temporary vector approximation. Replace it with the official Aimprosoft SVG from the company brand book before production use.
+This applies committed migrations before building the application.
